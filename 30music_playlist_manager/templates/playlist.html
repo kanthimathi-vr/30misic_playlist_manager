@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>{{ playlist.name }}</h2>
+  <p><strong>Genre:</strong> {{ playlist.genre }}</p>
+  <img src="{{ url_for('static', filename=playlist.album_art) }}" alt="{{ playlist.name }} album art" class="album-art-large" />
+
+  <h3>Songs</h3>
+  {% if playlist.songs %}
+    <ul class="song-list">
+      {% for song in playlist.songs %}
+        <li><strong>{{ song.title }}</strong> by {{ song.artist }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No songs in this playlist yet.</p>
+  {% endif %}
+
+  <h3>Add a New Song</h3>
+  <form method="POST" class="song-form">
+    <label for="title">Song Title:</label>
+    <input type="text" id="title" name="title" required />
+
+    <label for="artist">Artist:</label>
+    <input type="text" id="artist" name="artist" required />
+
+    <button type="submit">Add Song</button>
+  </form>
+{% endblock %}
