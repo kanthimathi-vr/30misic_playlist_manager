@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Music Playlist Manager</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <a href="{{ url_for('list_playlists') }}" class="nav-brand">🎵 Beach Playlists</a>
+      <a href="{{ url_for('list_playlists') }}" class="nav-link">All Playlists</a>
+    </div>
+  </nav>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>© 2025 Beach Music Playlist Manager</p>
+  </footer>
+</body>
+</html>

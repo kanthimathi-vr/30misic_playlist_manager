@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>All Playlists</h2>
+
+  <form method="GET" action="{{ url_for('list_playlists') }}" class="filter-form">
+    <label for="genre">Filter by Genre:</label>
+    <select name="genre" id="genre" onchange="this.form.submit()">
+      <option value="">All</option>
+      {% for g in genres %}
+        <option value="{{ g }}" {% if selected_genre == g %}selected{% endif %}>{{ g }}</option>
+      {% endfor %}
+    </select>
+  </form>
+
+  <div class="playlist-grid">
+    {% for playlist in playlists %}
+      <div class="playlist-card">
+        <a href="{{ url_for('playlist_detail', playlist_id=playlist.id) }}">
+          <img src="{{ url_for('static', filename=playlist.album_art) }}" alt="{{ playlist.name }} album art" />
+          <h3>{{ playlist.name }}</h3>
+          <p><em>{{ playlist.genre }}</em></p>
+        </a>
+      </div>
+    {% else %}
+      <p>No playlists found.</p>
+    {% endfor %}
+  </div>
+{% endblock %}
